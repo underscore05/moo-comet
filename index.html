@@ -7,8 +7,16 @@
 	<link rel="stylesheet" href="css/spinner.css" />
 </head>
 <body>
-	<div class="container">
+	<div class="container" style="max-width:600px">
 		<h1>Simple Chat Application using Comet.js</h1>
+		
+		<hr />
+		<p class="content">
+			This simple chat application is using Comet[dot]js. 
+			and its source code can be downloaded in my repository at
+			<a href="https://github.com/underscore05/moo-comet" target="_blank">Github.com</a>.
+		</p>
+		
 		<div class="panel panel-primary" >
 			<div class="panel-heading">Messages</div>
 			<div id="messageContainer" class="panel-body" style="max-height:200px;min-height:100px; overflow-y:scroll;">
@@ -17,21 +25,25 @@
 			</div>			
 		</div>
 		
-		
-		<form action="save.php" id="frm" role="form">
-			<input type="hidden" name="act" value="save" />
-			<div class="form-group">
-				<label for="name">Name</label>				
-				<input type="text" name="name" id="name" class="form-control" placeholder="Enter your name"/>
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<form action="save.php" id="frm" role="form">
+					<input type="hidden" name="act" value="save" />
+					<div class="form-group">
+						<label for="name">Name</label>				
+						<input type="text" name="name" id="name" class="form-control" placeholder="Enter your name"/>
+					</div>
+					<div class="form-group">
+						<label for="msg">Message</label>				
+						<textarea name="msg" id="msg" class="form-control" rows="3" placeholder="Enter your message"></textarea>
+					</div>
+					<div class="form-group">			    
+						<button type="submit" id="save" class="btn btn-default">Send Message</button>
+					</div>		
+				</form>
 			</div>
-			<div class="form-group">
-				<label for="name">Message</label>				
-				<textarea name="msg" id="msg" class="form-control" rows="3" placeholder="Enter your message"></textarea>
-			</div>
-			<div class="form-group">			    
-				<button type="submit" id="save" class="btn btn-default">Send</button>
-			</div>		
-		</form>			
+			
+		</div>		
 	</div>		
 	<script type="text/javascript" src="js/mootools-core-1.4.5.min.js"></script>
 	<script type="text/javascript" src="js/mootools-more-1.4.0.1.min.js"></script>

@@ -1,3 +1,17 @@
+/**
+script: Comet.js
+name: Comet
+author: Richard Roque <roquerichardneil@gmail.com>
+description: Class that wraps Request.JSON class to implement long polling.
+license: MIT-style license
+requires:
+- Core/MooTools
+- Core/More	
+
+Known limitations: 
+- Doesn't work with another tab using the same browser.
+*/
+
 var Comet = new Class({
 	Extends: Request.JSON,
 	_try: 0,
