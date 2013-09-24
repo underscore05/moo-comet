@@ -10,7 +10,7 @@ require_once('classes/Message.php');
 
 $msgListFile = 'logs/messages.tmp';
 $_timestamp = intVal($_REQUEST['timestamp']);
-$max = 10;
+$max = 30;
 $try = 0;
 
 if(!file_exists($msgListFile)) {

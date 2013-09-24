@@ -74,7 +74,14 @@
 					messages.empty();
 					if(json.data.messages){
 						json.data.messages.each(function(msg){
-							var div = new Element('div.list-group-item', { text:msg.name+ ' : '+msg.message});
+							var div = new Element('div.list-group-item');
+							var spanName = new Element('div', {text:msg.name +':', style:'float:left'});
+							var spanMessage = new Element('p', {text:msg.message});
+							var spanDate = new Element('div', {text:msg.cdate, style:'float:right'});							
+							div.adopt(spanName);
+							div.adopt(spanDate);
+							div.adopt(new Element('hr'));
+							div.adopt(spanMessage);							
 							messages.adopt(div);
 						});
 					}
