@@ -1,5 +1,7 @@
 <?php
 
+error_reporting(~E_ALL);
+
 ignore_user_abort(true);
 flush();
 ob_flush();
