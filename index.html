@@ -38,9 +38,16 @@
 	<script type="text/javascript" src="js/comet.js"></script>
 	<script type="text/javascript" charset="utf-8">
 		window.addEvent('domready', function() {
-			var frm = new Form.Request($('frm'), {
+			var frm = $('frm');
+			new Form.Request(frm, null, {
+				resetForm: false,
 				requestOptions: {
-					useSpinner: true					
+					useSpinner: true,
+					onComplete: function() {						
+						var msg = frm.getElement('#msg');
+						msg.value="";
+						msg.focus();
+					}
 				}
 			});			
 			var messages = $('messages');
