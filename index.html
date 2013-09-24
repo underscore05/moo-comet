@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Simple Chat using Comet.js</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/spinner.css" />
+</head>
+<body>
+	<div class="container">
+		<h1>Simple Chat Application using Comet.js</h1>
+		<div class="panel panel-primary" >
+			<div class="panel-heading">Messages</div>
+			<div id="messageContainer" class="panel-body" style="max-height:200px;min-height:100px; overflow-y:scroll;">
+				<div id="messages" class="list-group" ></div>
+				<a href="reset.php" class="btn btn-warning">Clear Messages</a>
+			</div>			
+		</div>
+		
+		
+		<form action="save.php" id="frm" role="form">
+			<input type="hidden" name="act" value="save" />
+			<div class="form-group">
+				<label for="name">Name</label>				
+				<input type="text" name="name" id="name" class="form-control" placeholder="Enter your name"/>
+			</div>
+			<div class="form-group">
+				<label for="name">Message</label>				
+				<textarea name="msg" id="msg" class="form-control" rows="3" placeholder="Enter your message"></textarea>
+			</div>
+			<div class="form-group">			    
+				<button type="submit" id="save" class="btn btn-default">Send</button>
+			</div>		
+		</form>			
+	</div>		
+	<script type="text/javascript" src="js/mootools-core-1.4.5.min.js"></script>
+	<script type="text/javascript" src="js/mootools-more-1.4.0.1.min.js"></script>
+	<script type="text/javascript" src="js/comet.js"></script>
+	<script type="text/javascript" charset="utf-8">
+		window.addEvent('domready', function() {
+			var frm = new Form.Request($('frm'), {
+				requestOptions: {
+					useSpinner: true					
+				}
+			});			
+			var messages = $('messages');
+			var msgScroll = new Fx.Scroll($('messageContainer'));
+			new Comet({				
+				url: 'data.php',
+				onMaxRequestExceeded: function() {					
+					console.log('Resending another batch of request...');
+					this.send();
+				},
+				onNewData: function(json){
+					messages.empty();
+					if(json.data.messages){
+						json.data.messages.each(function(msg){
+							var div = new Element('div.list-group-item', { text:msg.name+ ' : '+msg.message});
+							messages.adopt(div);
+						});
+					}
+					msgScroll.toBottom();			
+				}
+			}).send();		
+		});
+	</script>
+</body>
+</html>
