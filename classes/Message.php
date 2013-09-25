@@ -1,5 +1,5 @@
 <?php
-
+date_default_timezone_set('Asia/Manila');
 class MessageList {
 	var $messages = array();
 	static $msgListFile = 'logs/messages.tmp';
