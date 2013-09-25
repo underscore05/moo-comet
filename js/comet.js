@@ -16,7 +16,7 @@ var Comet = new Class({
 	Extends: Request.JSON,
 	_try: 0,
 	options: {
-		delayPerRequest: 10,
+		delayPerRequest: 5,
 		max: 3,
 		data: {}
 	},
