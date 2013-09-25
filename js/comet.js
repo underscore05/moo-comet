@@ -26,7 +26,7 @@ var Comet = new Class({
 		
 		['failure', 'timeout', 'exception'].each(function(evt){
 			self.addEvent(evt, function() {
-				console.log("Sending another request after "+this.options.delayPerRequest+" seconds...");
+				console.log("Delay request for "+this.options.delayPerRequest+" seconds...");
 				this.send.delay(this.options.delayPerRequest * 1000, self);	
 			});
 		});		
@@ -39,6 +39,7 @@ var Comet = new Class({
 			return;
 		}
 		this._try++;
+		console.log("Sending request...");
 		this.parent(options);
 	},
 	onSuccess: function(json, text){		
@@ -50,7 +51,7 @@ var Comet = new Class({
 			this._try = 0;		
 			this.fireEvent('newData', json);
 		}
-		console.log("Sending another request after "+this.options.delayPerRequest+" seconds...");		
+		console.log("Delay request for "+this.options.delayPerRequest+" seconds...");		
 		this.send.delay(this.options.delayPerRequest * 1000, self);	
 	}
 });
