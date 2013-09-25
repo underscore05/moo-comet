@@ -23,11 +23,13 @@ var Comet = new Class({
 	initialize: function(options){
 		var self = this;
 		this.parent(options);
-		this.addEvents({
-			onFailure: function() { self.send(); },
-			onTimeout: function() { self.send(); },
-			onException: function() { self.send(); }
-		});
+		
+		['failure', 'timeout', 'exception'].each(function(evt){
+			self.addEvent(evt, function() {
+				console.log("Sending another request after "+this.options.delayPerRequest+" seconds...");
+				this.send.delay(this.options.delayPerRequest * 1000, self);	
+			});
+		});		
 	},
 	send: function(options){
 		var exceeds = (this._try >= this.options.max);
